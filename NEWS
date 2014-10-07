@@ -1,0 +1,84 @@
+Version 0.17 2/8/12
+-------------------
+This release includes new HTTP signatures, the ability to catch different
+types of HTTP attacks and SSH and Dovecot attacks.
+
+Version 0.16 1/2/11
+-------------------
+This release includes new HTTP signatures, faster response to prohibit
+attackers' access, and portability to Apple's Darwin operating system.
+
+Version 0.15.1 1/8/10
+---------------------
+This release includes no new features, it contains bug fixes, minor
+improvements and new HTTP signatures.
+
+Version 0.15 20/4/10
+--------------------
+This release includes major new features.
+Clamav-sniffer now uses autoconf, so instead of editing the #defines within
+	clamav-sniffer.c, just type "./configure".
+The first draft of a monitor system for cracking attempts to port 80 has
+	been added.
+OpenBSD and FreeBSD are now supported.
+The -W flag has been added, with this option data from white-listed IP addresses
+	are no longer scanned. Without it the data are scanned, however
+	the IP address is not blocked.
+
+Version 0.10 12/2/10
+--------------------
+This release includes some new features and bug fixes.
+Clamav-sniffer is now able to handle very long hostnames.
+If the socket to talk to clamd isn't given, clamav-sniffer now looks in the
+clamd.conf file for the information.
+Added HAVE_NETSTAT_WIDE. Some netstats don't have the -W option, clamav-sniffer
+is now able to use lsof on those environments.
+
+Version 0.07 20/12/09
+---------------------
+This release includes new features.
+Hostnames can now be whitelisted as well as IP addresses.
+The --kill-programs option has been added which kills programs receiving
+malware. This works particularly well with sendmail when the sanesecurity
+database has been installed, since it terminates sessions much quicker than
+other methods, saving resources.
+The --sacred-program option allows programs to be named that won't be killed,
+it's useful to add squid to this list.
+
+Version 0.06 12/5/09
+--------------------
+This release includes some tidyups and minor changes to functionality. It is
+quicker at noticing the end of a connection thereby freeing system resources
+earlier, it uses fewer resources when modifying the system's firewall and
+allows /netmask to be added to a whitelist address, e.g. "-w 192.168.1.0/8".
+
+Version 0.05 16/4/09
+--------------------
+This release includes a major rewrite. If it is available, clamav-sniffer
+will now make use of the pcap library. This ehances the portability of
+clamav-sniffer which is now available for FreeBSD, Solaris and NetBSD in
+addition to Linux. The "-d" feature only works for Linux for now, I plan to
+port that to other platforms soon.
+
+Version 0.04 8/4/09
+-------------------
+This release allows the communications method to ClamAV to be specified at
+the command line. Prior to this release the communication method needed to
+be hardcoded into the source.
+
+To use UNIX domain sockets, specify the full path name in the command line.
+To use Internet domain sockets, specify the hostname:portnumber pair.
+
+Version 0.03 30/3/09
+--------------------
+
+This is a a bug fix release which corrects a problem detected by Valgrind.
+
+Version 0.02 26/3/09
+--------------------
+
+This is a bug fix release which tidies up better. In particular the files
+in /tmp should now all be removed when the program finishes, and the interface
+will leave promiscuous mode.
+A new option "-s" has been added to not add the outgoing interface (ourselves)
+to the firewall. Its use is encouraged.
