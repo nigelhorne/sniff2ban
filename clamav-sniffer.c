@@ -931,10 +931,11 @@ main(int argc, char *const *argv)
 
 		v = sniff_search(hashtable, k);
 		if(v) {
+			off_t nbytesread = v->nbytes;
 #ifdef	TH_SYN
-			if(tcphdr->th_flags&TH_SYN)
+			if(tcphdr->th_flags&TH_SYN) {
 #else
-			if(tcphdr->syn)
+			if(tcphdr->syn) {
 #endif
 				/*
 				 * Remote end is trying to create another
@@ -944,12 +945,13 @@ main(int argc, char *const *argv)
 				 * up will stop this (if -d is given)
 				 */
 				destroy(hashtable, k, v);
-			else
+				v = NULL;
+			} else
 				k = NULL;
-
-			if(v->nbytes > MAXSCANSIZE)
+			if(nbytesread > MAXSCANSIZE)
 				continue;
-		} else {
+		}
+		if(v == NULL) {
 			struct in_addr in_addr;
 			char filename[128];
 
