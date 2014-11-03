@@ -251,6 +251,9 @@ static	const	char	*http_probes[] = {
 	"GET /muieblackcat",
 	"GET /admin/fckeditor/editor/filemanager/browser/default/connectors/test.html",
 	"GET /bxbx/bxb/bx.php",
+	"GET /xpxp/xpx/xp.php",
+	"GET /zbzb/zbz/zb.php",
+	"GET /qpqp/qpq/qp.php",
 	"HEAD /fckeditor/editor/filemanager/browser/default/connectors/aspx/connector.aspx",
 	NULL
 };

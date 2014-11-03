@@ -33,8 +33,8 @@ get them wrong so it's best to be explicit. LIBPCAP is needed to guess the
 interface.
 
 You are urged to keep this product up-to-date.  The best way is to checkout the
-latest version from the SVN repositary about once a day:
-	svn checkout svn://svn.code.sf.net/p/clamav-sniffer/code/ clamav-sniffer-code
+latest version from the GIT repositary about once a day:
+	git clone https://github.com/nigelhorne/clamav-sniffer.git
 
 On systems other than Linux you must use libpcap.  On Linux it's use is
 encouraged but not mandatory. To use LIBPCAP on Debian Linux you must first
