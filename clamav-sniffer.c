@@ -254,6 +254,7 @@ static	const	char	*http_probes[] = {
 	"GET /xpxp/xpx/xp.php",
 	"GET /zbzb/zbz/zb.php",
 	"GET /qpqp/qpq/qp.php",
+	"GET /juju/juj/ju.php",
 	"HEAD /fckeditor/editor/filemanager/browser/default/connectors/aspx/connector.aspx",
 	NULL
 };
