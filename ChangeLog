@@ -1,3 +1,7 @@
+Wed  8 Oct 14:29:33 BST 2014 (njh)
+----------------------------------
+clamav-sniffer.c:	Fix read after free
+
 Wed 16 Apr 21:29:35 BST 2014 (njh)
 ----------------------------------
 clamav-sniffer.c:	Improved handling of EEXISTS
