@@ -239,7 +239,8 @@ static	const	char	*http_probes[] = {
 	"GET /phpMyAdmin-2/index.php",
 	"GET /translators.html",
 	"GET //typo3/phpmyadmin/index.php",
-	"GET //wp-login.php HTTP/1.1",
+	"GET /xmlrpc.php HTTP/1.1",
+	"GET /wp-login.php HTTP/1.1",
 	"POST /cgi-bin/php?%2D%64+%61%6C%6C%6F%77%5F%75%72%6C%5F%69%6E%63%6C%75%64%65%3D%6F%6E+%2D%64+%73%61%66%65%5F%6D%6F%64%65%3D%6F%66%66+%2D%64+%73%75%68%6F%73%69%6E%2E%73%69%6D%75%6C%61%74%69%6F%6E%3D%6F",
 	"GET /phppath/php",
 	"GET //administrator/components/",
@@ -954,6 +955,7 @@ main(int argc, char *const *argv)
 				k = NULL;
 			if(nbytesread > MAXSCANSIZE)
 				continue;
+			v = NULL;
 		}
 		if(v == NULL) {
 			struct in_addr in_addr;
