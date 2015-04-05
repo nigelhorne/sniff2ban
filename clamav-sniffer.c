@@ -257,6 +257,7 @@ static	const	char	*http_probes[] = {
 	"GET /qpqp/qpq/qp.php",
 	"GET /juju/juj/ju.php",
 	"HEAD /fckeditor/editor/filemanager/browser/default/connectors/aspx/connector.aspx",
+	"masscan/",
 	NULL
 };
 static	size_t	*http_probelens;
