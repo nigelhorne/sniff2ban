@@ -237,6 +237,7 @@ static	const	char	*http_probes[] = {
 	"GET /xampp/phpmyadmin/scripts/setup.php",
 	"GET /admin/index.php",
 	"GET /phpMyAdmin-2/index.php",
+	"GET //phpMyAdmin-2/",
 	"GET /translators.html",
 	"GET //typo3/phpmyadmin/index.php",
 	"GET /xmlrpc.php HTTP/1.1",
