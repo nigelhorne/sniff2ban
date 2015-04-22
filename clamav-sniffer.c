@@ -953,8 +953,7 @@ main(int argc, char *const *argv)
 				 */
 				destroy(hashtable, k, v);
 				v = NULL;
-			} else
-				k = NULL;
+			}
 			if(nbytesread > MAXSCANSIZE)
 				continue;
 			v = NULL;
