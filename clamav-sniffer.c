@@ -1,7 +1,7 @@
 /*
  *  clamav-sniffer.c: Scan for viruses being sent over an interface
  *
- *  Copyright (C) 2009-2014 Nigel Horne, njh@bandsman.co.uk
+ *  Copyright (C) 2009-2015 Nigel Horne, njh@bandsman.co.uk
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 2 as
@@ -698,6 +698,23 @@ main(int argc, char *const *argv)
 		fprintf(stderr, "%s: Error with pcap_compile \"tcp\"\n",
 			argv[0]);
 #endif
+
+	if(!verbose)
+		switch(fork()) {
+			case -1:
+				perror("fork");
+				return;
+			case 0:
+				/*close(0);
+				close(1);
+				close(2);
+				open("/dev/null", O_RDONLY);
+				open("/dev/null", O_WRONLY);
+				dup(1);*/
+				break;
+			default:
+				return 0;
+		}
 
 	if(pidfile) {
 		/*
