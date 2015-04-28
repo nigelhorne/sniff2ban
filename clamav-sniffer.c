@@ -258,6 +258,7 @@ static	const	char	*http_probes[] = {
 	"GET /qpqp/qpq/qp.php",
 	"GET /juju/juj/ju.php",
 	"HEAD /fckeditor/editor/filemanager/browser/default/connectors/aspx/connector.aspx",
+	"POST http://vlad-tepes.bofh.it/freenode-proxy-checker.txt",
 	"masscan/",
 	NULL
 };
