@@ -124,7 +124,7 @@
 				 * connection has closed
 				 */
 #define	MIN_SCAN_OFTEN_SECS	5	/* Do not scan a file more often than this */
-#if(AUTH_LOG || DOVECOT_LOG)
+#if(defined(AUTH_LOG) || defined(DOVECOT_LOG))
 #define	MAX_FAILURES	3	/* Any more than this and you can't get in */
 #endif
 
@@ -312,7 +312,7 @@ static	int	verbose = 0;
 static	int	killprograms;
 static	int	timealive = TIMEALIVE;
 static	const	char	*tmpdir;
-#if(AUTH_LOG || DOVECOT_LOG)
+#if(defined(AUTH_LOG) || defined(DOVECOT_LOG))
 static	int	max_failures = MAX_FAILURES;
 #endif
 
@@ -359,7 +359,7 @@ main(int argc, char *const *argv)
 			}, {
 				"kill-programs", 0, NULL, 'k'
 			}, {
-#if(AUTH_LOG || DOVECOT_LOG)
+#if(defined(AUTH_LOG) || defined(DOVECOT_LOG))
 				"maximum-failures", 0, NULL, 'm'
 			}, {
 #endif
@@ -400,10 +400,10 @@ main(int argc, char *const *argv)
 			case 'k':
 				killprograms++;
 				break;
-#if(AUTH_LOG || DOVECOT_LOG)
+#if(defined(AUTH_LOG) || defined(DOVECOT_LOG))
 			case 'm':
 				max_failures = atoi(optarg);
-				if(max_failues < 0) {
+				if(max_failures < 0) {
 					fprintf(stderr, "%s: -m argument can't be negative\n",
 						argv[0]);
 					return 1;
