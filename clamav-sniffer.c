@@ -124,6 +124,9 @@
 				 * connection has closed
 				 */
 #define	MIN_SCAN_OFTEN_SECS	5	/* Do not scan a file more often than this */
+#if(AUTH_LOG || DOVECOT_LOG)
+#define	MAX_FAILURES	3	/* Any more than this and you can't get in */
+#endif
 
 union ip_addr {
 	in_addr_t	i;
@@ -309,6 +312,9 @@ static	int	verbose = 0;
 static	int	killprograms;
 static	int	timealive = TIMEALIVE;
 static	const	char	*tmpdir;
+#if(AUTH_LOG || DOVECOT_LOG)
+static	int	max_failures = MAX_FAILURES;
+#endif
 
 int
 main(int argc, char *const *argv)
@@ -353,6 +359,10 @@ main(int argc, char *const *argv)
 			}, {
 				"kill-programs", 0, NULL, 'k'
 			}, {
+#if(AUTH_LOG || DOVECOT_LOG)
+				"maximum-failures", 0, NULL, 'm'
+			}, {
+#endif
 				"pidfile", 1, NULL, 'p'
 			}, {
 				"sacred-program", 1, NULL, 'S'
@@ -389,6 +399,16 @@ main(int argc, char *const *argv)
 				break;
 			case 'k':
 				killprograms++;
+				break;
+#if(AUTH_LOG || DOVECOT_LOG)
+			case 'm':
+				max_failures = atoi(optarg);
+				if(max_failues < 0) {
+					fprintf(stderr, "%s: -m argument can't be negative\n",
+						argv[0]);
+					return 1;
+				}
+#endif
 				break;
 			case 's':
 				/*
@@ -704,7 +724,7 @@ main(int argc, char *const *argv)
 		switch(fork()) {
 			case -1:
 				perror("fork");
-				return;
+				return errno;
 			case 0:
 				/*close(0);
 				close(1);
@@ -1567,6 +1587,7 @@ scan(struct value *v, union ip_addr saddr, union ip_addr daddr, in_port_t dport)
 	if(dport == 22) {
 #endif
 		FILE *p;
+		int failures = 0;
 		char s[100], c[200];
 
 		/*printf("SSH from %s\n", ipv4tostr(s, saddr));*/
@@ -1579,16 +1600,19 @@ scan(struct value *v, union ip_addr saddr, union ip_addr daddr, in_port_t dport)
 
 			while(fgets(l, sizeof(l), p) != NULL)
 				if(strstr(l, "Failed password for ")) {
+					failures++;
 					/*fputs(l, stdout);*/
-					strcpy(virusname, "SSH attack");
-					malware_type = "SSH attack";
-					v->infected = 1;
 					/*
 					 * Can't break, gets Broken Pipe from grep
 					 */
 					/*break;*/
 				}
 			pclose(p);
+			if(failures >= max_failures) {
+				strcpy(virusname, "SSH attack");
+				malware_type = "SSH attack";
+				v->infected = 1;
+			}
 		}
 	}
 #endif
@@ -1600,6 +1624,7 @@ scan(struct value *v, union ip_addr saddr, union ip_addr daddr, in_port_t dport)
 	if(dport == 110) {
 #endif
 		FILE *p;
+		int failures = 0;
 		char s[100], c[200];
 
 		/*printf("POP3 from %s\n", ipv4tostr(s, saddr));*/
@@ -1611,16 +1636,19 @@ scan(struct value *v, union ip_addr saddr, union ip_addr daddr, in_port_t dport)
 			char l[222];
 
 			while(fgets(l, sizeof(l), p) != NULL) {
+				failures++;
 				/*fputs(l, stdout);*/
-				strcpy(virusname, "Dovecot attack");
-				malware_type = "Dovecot attack";
-				v->infected = 1;
 				/*
 				 * Can't break, gets Broken Pipe from grep
 				 */
 				/*break;*/
 			}
 			pclose(p);
+			if(failures >= max_failures) {
+				strcpy(virusname, "Dovecot attack");
+				malware_type = "Dovecot attack";
+				v->infected = 1;
+			}
 		}
 	}
 #endif

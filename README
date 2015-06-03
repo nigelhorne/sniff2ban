@@ -9,6 +9,9 @@ Usage:
 
 -d:	Block sites sending us malware
 -k:	Kill the program sending/receiving the malware (needs netstat which support -W)
+-m:	When --enable-dovecot-scanning or --enable-ssh-scanning is given, this
+		is the maximum number of incorrect password attempts. The
+		default is 3.
 -p:	Write a pidfile for monit(1) or puppet(1)
 -S:	Don't kill this program
 -s:	Don't drop ourself (i.e. whitelist "interface")
