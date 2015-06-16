@@ -1619,9 +1619,9 @@ scan(struct value *v, union ip_addr saddr, union ip_addr daddr, in_port_t dport)
 
 #ifdef	DOVECOT_LOG
 #if	defined(SITES_ENABLED_DIR) || defined(AUTH_LOG)
-	else if(dport == 110) {
+	else if((dport == 110) || (dport == 993)) {
 #else
-	if(dport == 110) {
+	if((dport == 110) || (dport == 993)) {
 #endif
 		FILE *p;
 		int failures = 0;
