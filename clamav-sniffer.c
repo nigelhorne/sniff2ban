@@ -997,6 +997,7 @@ main(int argc, char *const *argv)
 			v = NULL;
 		}
 		if(v == NULL) {
+			int scan;
 			struct in_addr in_addr;
 			char filename[128];
 
@@ -1011,6 +1012,27 @@ main(int argc, char *const *argv)
 					}
 					continue;
 				}
+
+			scan = 0;
+			if(dport == 25)
+				scan = 1;
+#ifdef SITES_ENABLED_DIR
+			if(dport == http_port)
+				scan = 1;
+#endif
+#ifdef	AUTH_LOG
+			if(dport == 22)
+				scan = 1;
+#endif
+#ifdef	DOVECOT_LOG
+			if((dport == 110) || (dport == 993))
+				scan = 1;
+#endif
+			if(scan == 0) {
+				if(verbose >= 3)
+					fprintf(stderr, "Not scanning to destination port %d\n", dport);
+				continue;
+			}
 
 			/* TODO: use TMPDIR */
 			in_addr.s_addr = source_addr.i;
@@ -1031,7 +1053,7 @@ main(int argc, char *const *argv)
 					 * connection and we haven't yet tidied
 					 * up
 					 */
-					usleep(100000L);
+					sleep(1);
 					v->fp = fopen(filename, "wx");
 				}
 				if(v->fp == NULL) {
