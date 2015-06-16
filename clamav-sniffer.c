@@ -305,6 +305,9 @@ static	int	iswhitelisted(const union ip_addr *host_order_addr);
 static	void	setup_apache_hosts(void);
 #endif
 
+#ifdef SITES_ENABLED_DIR
+static	in_port_t	http_port;
+#endif
 static	struct	hashtable	*hashtable;
 static	int	droproutes;
 static	int	stopping;
@@ -1017,7 +1020,8 @@ main(int argc, char *const *argv)
 			if(dport == 25)
 				scan = 1;
 #ifdef SITES_ENABLED_DIR
-			if(dport == http_port)
+			/* FIXME: http_port == 0 until scan() is called */
+			if((dport == http_port) || (http_port == 0))
 				scan = 1;
 #endif
 #ifdef	AUTH_LOG
@@ -1356,9 +1360,6 @@ scan(struct value *v, union ip_addr saddr, union ip_addr daddr, in_port_t dport)
 {
 	time_t now;
 	const char *malware_type;
-#ifdef SITES_ENABLED_DIR
-	static in_port_t http_port;
-#endif
 	char virusname[255];
 
 	if(v->nbytes < MINSCANSIZE)
