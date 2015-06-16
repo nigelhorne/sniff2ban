@@ -2421,9 +2421,16 @@ iswhitelisted(const union ip_addr *host_order_addr)
 	const struct whitelist *w;
 	in_addr_t naddr = htonl(host_order_addr->i);
 
-	for(w = whitelist; w; w = w->next)
-		if((htonl(w->addr.i) & w->mask) == (naddr & w->mask))
+	for(w = whitelist; w; w = w->next) {
+		if(verbose >= 3)
+			fprintf(stderr, "Compare 0x%x (0x%x) 0x%x (0x%x) mask 0x%x\n",
+				htonl(w->addr.i), htonl(w->addr.i) & w->mask,
+				naddr, naddr & w->mask, w->mask);
+		if((htonl(w->addr.i) & w->mask) == (naddr & w->mask)) {
+			fprintf(stderr, "1\n");
 			return 1;
+		}
+	}
 	return 0;
 }
 
