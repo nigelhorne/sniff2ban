@@ -1061,7 +1061,9 @@ main(int argc, char *const *argv)
 					v->fp = fopen(filename, "wx");
 				}
 				if(v->fp == NULL) {
-					perror(filename);
+					if(errno != EEXIST) {
+						perror(filename);
+					}
 					free(v);
 
 					continue;
