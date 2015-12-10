@@ -263,6 +263,7 @@ static	const	char	*http_probes[] = {
 	"HEAD /fckeditor/editor/filemanager/browser/default/connectors/aspx/connector.aspx",
 	"POST http://vlad-tepes.bofh.it/freenode-proxy-checker.txt",
 	"GET /tmUnblock.cgi",
+	"POST http://check.proxyradar.com",
 	"masscan/",
 	NULL
 };
