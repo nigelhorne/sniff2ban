@@ -7,7 +7,7 @@ Sites can be whitelisted.
 Usage:
 	clsniffer [-d] [-k] [-s] [-t seconds] [-v] [-S program1] [-S program2...] [-w IPv4address1[/mask]] [-w IPv4address2[/mask]...] [-p pidfile] [-V] [-W] [ socket ] [ interface ]
 
--d:	Block sites sending us malware
+-d:	Block (iptables DROP) sites sending us malware
 -k:	Kill the program sending/receiving the malware (needs netstat which support -W)
 -m:	When --enable-dovecot-scanning or --enable-ssh-scanning is given, this
 		is the maximum number of incorrect password attempts. The
