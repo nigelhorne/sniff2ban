@@ -264,6 +264,7 @@ static	const	char	*http_probes[] = {
 	"POST http://vlad-tepes.bofh.it/freenode-proxy-checker.txt",
 	"GET /tmUnblock.cgi",
 	"POST http://check.proxyradar.com",
+	"GET /server-status?HTTP_POST=%\"%6346#%#/&#736%\"#423|;&HTTP_CGI_GET=GRESYYK\"K&J\"#L523D2G23H23",	/* apache 0day by @hxmonsegur */
 	"masscan/",
 	NULL
 };
