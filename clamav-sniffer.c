@@ -2063,7 +2063,7 @@ clamscan(const char *file, char *virusname, const char *socketpath, in_port_t po
 		if((ptr = strrchr(buf, ':')) != NULL) {
 			ptr += 2;
 			/* skip over 'stream/filename: ' at the start */
-			if((ptr = strrchr(buf, ':')) != NULL)
+			if((ptr = strrchr(ptr, ':')) != NULL)
 				ptr += 2;
 			else
 				ptr = buf;
