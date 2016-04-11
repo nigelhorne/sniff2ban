@@ -84,6 +84,9 @@ There is also an --enable-ssh-scanning option, however I suggest you do NOT
 enable it for now because the code hasn't been hardened or optimised.
 	./configure --enable-ssh-scanning=/var/log/auth.log
 
+To enable SMTP brute force detection (not currently implemented)
+	./config --enable-smtp-scannint=/var/log/mail.log
+
 If you see lots of send errors, the chances are that clamd is timingout. In
 this case, increase ReadTimeout and CommandReadTimeout in clamd.conf to
 86400 (1 day) and restart clamd and clamav-sniffer.

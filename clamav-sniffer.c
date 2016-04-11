@@ -32,6 +32,7 @@
  * TODO: use INSTREAM when talking to clamd, and stop creating the temp files
  * TODO: to avoid clamd timeout and dropping the IDSESSION, send PING from time
  *	to time
+ * TODO: SMTP_SCANNING - look for 'possible SMTP attack'
  *
  * Version 0.07 21/12/09
  * Version 0.10 12/2/10

@@ -142,7 +142,7 @@ AC_ARG_ENABLE(
 			RES=`fgrep auth.log /etc/syslog-ng/syslog-ng.conf 2>/dev/null`
 			if test $? -eq 0; then
 				AUTH_LOG=`echo $RES|awk '{ print $4 }' | perl -e 'my $s = <STDIN>; $s =~ s/.*?"(.*?)".*/$1/; print $s'`
-				AC_DEFINE_UNQUOTED([AUTH_LOG], "$AUTH_LOG", [Syslog authentiction messages])
+				AC_DEFINE_UNQUOTED([AUTH_LOG], "$AUTH_LOG", [Syslog authentication messages])
 			fi
 		fi
 
@@ -166,9 +166,29 @@ AC_ARG_ENABLE(
 
 			if test -f $DOVECOT_LOG; then
 				AC_MSG_RESULT(yes)
-				AC_DEFINE_UNQUOTED([DOVECOT_LOG], "$DOVECOT_LOG", [Dovecot authentiction messages])
+				AC_DEFINE_UNQUOTED([DOVECOT_LOG], "$DOVECOT_LOG", [Dovecot authentication messages])
 			else
 				AC_MSG_ERROR($DOVECOT_LOG not found)
+			fi
+		fi
+])
+
+AC_ARG_ENABLE(
+	smtp-scanning,
+	AC_HELP_STRING([--enable-smtp-scanning=FILE],
+			[ enable SMTP scanning, FILE is the log file e.g. /var/log/mail.log]), [
+		ac_enable_smtp_scanning=$enableval
+
+		if test $ac_enable_smtp_scanning != "no"; then
+			SMTP_LOG=$ac_enable_smtp_scanning
+
+			AC_MSG_CHECKING(that $SMTP_LOG exists)
+
+			if test -f $SMTP_LOG; then
+				AC_MSG_RESULT(yes)
+				AC_DEFINE_UNQUOTED([SMTP_LOG], "$SMTP_LOG", [SMTP authentication messages])
+			else
+				AC_MSG_ERROR($SMTP_LOG not found)
 			fi
 		fi
 ])
