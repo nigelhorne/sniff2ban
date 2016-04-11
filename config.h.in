@@ -1,6 +1,6 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
-/* Syslog authentiction messages */
+/* Syslog authentication messages */
 #undef AUTH_LOG
 
 /* ClamAV configuration file */
@@ -9,7 +9,7 @@
 /* Target is Linux */
 #undef C_LINUX
 
-/* Dovecot authentiction messages */
+/* Dovecot authentication messages */
 #undef DOVECOT_LOG
 
 /* Define to 1 if you have the <arpa/inet.h> header file. */
@@ -216,6 +216,9 @@
 
 /* Apache2 sites enabled dir */
 #undef SITES_ENABLED_DIR
+
+/* SMTP authentication messages */
+#undef SMTP_LOG
 
 /* Define to 1 if you have the ANSI C header files. */
 #undef STDC_HEADERS
