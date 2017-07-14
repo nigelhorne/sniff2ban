@@ -2031,7 +2031,7 @@ clamscan(const char *file, char *virusname, const char *socketpath, in_port_t po
 		/*
 		 * Most likely clamd has been restarted
 		 */
-		syslog(LOG_ERR, "Failed to send file to clamd");
+		syslog(LOG_ERR, "Failed to send %d bytes in %s to clamd", len, file);
 		fprintf(stderr, "Failed to send %d bytes in %s to clamd\n", len, file);
 		close_clamd_socket();
 		return 0;
