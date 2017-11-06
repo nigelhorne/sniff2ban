@@ -111,7 +111,6 @@ hashtable_expand(struct hashtable *h)
     /* Double the size of the table to accomodate more entries */
     struct entry **newtable;
     struct entry *e;
-    struct entry **pE;
     unsigned int newsize, i, index_;
     /* Check we're not hitting max capacity */
     if (h->primeindex == (prime_table_length - 1)) return 0;
@@ -142,6 +141,7 @@ hashtable_expand(struct hashtable *h)
         h->table = newtable;
         memset(newtable[h->tablelength], 0, newsize - h->tablelength);
         for (i = 0; i < h->tablelength; i++) {
+	    struct entry **pE;
             for (pE = &(newtable[i]), e = *pE; e != NULL; e = *pE) {
                 index_ = indexFor(newsize,e->h);
                 if (index_ == i)
