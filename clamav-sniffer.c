@@ -180,6 +180,8 @@ static	int	clamd_socket;
  */
 static	const	char	*http_probes[] = {
 	"GET //mysql/",
+	"GET /mysql//scripts/setup.php",
+	"GET /admin/mysql/scripts/setup.php",
 	"GET /user/soapCaller.bs",
 	"GET /w00tw00t.at.",
 	"GET /test.w00t:)",
@@ -199,12 +201,15 @@ static	const	char	*http_probes[] = {
 	"GET /phpmyadmin//scripts/setup.php",
 	"GET /phpmyadmin/scripts/setup.php",
 	"GET //phpmyadmin/config/config.inc.php?p=phpinfo();",
+	"GET /phpMyAdmin-",	/* ZmEu */
+	"GET //phpMyAdmin/",
+	"GET /phpMyAdmin/",
+	"GET /phpMyAdmin-2.10.0.0/scripts/setup.php",
 	"GET /admin",
 	"GET /e107_files/e107.css",	/* Toata dragostea mea pentru diavola */
 	"GET /controls/ps3-dbadmin/scripts/setup.php",	/* Toata dragostea mea pentru iEdi */
 	"GET /thisdoesnotexistahaha.php",
 	"GET //themes/NukeNews/",
-	"GET /mysql//scripts/setup.php",
 	"GET /adxmlrpc.php",
 	"GET /cart/install.txt",	/* Toata dragostea mea pentru diavola */
 	/* "GET //pma/config/config.inc.php?p=phpinfo();", */
@@ -213,9 +218,6 @@ static	const	char	*http_probes[] = {
 	"GET //sql/",	/* ZmEu */
 	"GET //PHPMYADMIN/",	/* ZmEu */
 	"GET //dbadmin/config/config.inc.php?p=phpinfo();",
-	"GET /phpMyAdmin-",	/* ZmEu */
-	"GET //phpMyAdmin/",
-	"GET /phpMyAdmin/",
 	"GET //horde/util/barcode.php?type=../../../../../../../../../../../../../etc/passwd",
 	"GET //web-console/css//dtree.css",
 	"GET /webdav/test",
@@ -231,7 +233,6 @@ static	const	char	*http_probes[] = {
 	"HEAD /manager/html",
 	"GET /appserv/main.php",
 	"GET /3rdparty/phpMyAdmin",
-	"GET /admin/mysql/scripts/setup.php",
 	"GET /_phpMyAdmin/scripts/setup.php",
 	"GET /sqladmin/scripts/setup.php",
 	"GET /sqlmanager/scripts/setup.php",
@@ -266,6 +267,9 @@ static	const	char	*http_probes[] = {
 	"GET /tmUnblock.cgi",
 	"POST http://check.proxyradar.com",
 	"GET /server-status?HTTP_POST=%\"%6346#%#/&#736%\"#423|;&HTTP_CGI_GET=GRESYYK\"K&J\"#L523D2G23H23",	/* apache 0day by @hxmonsegur */
+	"GET /MyAdmin/scripts/setup.php",
+	"GET /PMA2011/scripts/setup.php",
+	"GET /PMA2012/scripts/setup.php",
 	"masscan/",
 	NULL
 };
