@@ -1,7 +1,7 @@
 /*
  *  clamav-sniffer.c: Scan for viruses being sent over an interface
  *
- *  Copyright (C) 2009-2015 Nigel Horne, njh@bandsman.co.uk
+ *  Copyright (C) 2009-2018 Nigel Horne, njh@bandsman.co.uk
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 2 as
@@ -270,6 +270,9 @@ static	const	char	*http_probes[] = {
 	"GET /MyAdmin/scripts/setup.php",
 	"GET /PMA2011/scripts/setup.php",
 	"GET /PMA2012/scripts/setup.php",
+	"GET /engine/log.txt",
+	"GET /stalker_portal/server/adm/users/users-list-json",
+	"GET /_asterisk/",
 	"masscan/",
 	NULL
 };
