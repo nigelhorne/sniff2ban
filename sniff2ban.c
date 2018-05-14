@@ -590,6 +590,12 @@ main(int argc, char *const *argv)
 #else
 	interface = argv[optind];
 
+	if(interface == NULL) {
+		fputs("No Interface given\n", stderr);
+		fprintf(stderr, "Usage: %s [-d] [-k] [-s] [-t secs] [-v] [-w IP address] [ -W ] [-S sacred_program ] [ socket ] interface\n", argv[0]);
+		return 1;
+	}
+
 	/*
 	 * Don't use ETH_P_IP so that we can catch FTP transfers
 	 */
@@ -2000,7 +2006,7 @@ onexit(void)
 	close_clamd_socket();
 }
 
-#ifndef	CLAMD_CONF
+#ifdef	CLAMD_CONF
 /*
  * 0 for CLEAN or ERROR
  * FIXME: ERROR should be configurable to assume CLEAN or not
