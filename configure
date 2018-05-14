@@ -5398,8 +5398,8 @@ _ACEOF
 	fi
 done
 if test "x$CLAMD_CONF" = "x"; then
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Cannot find clamd.conf" >&5
-$as_echo "$as_me: WARNING: Cannot find clamd.conf" >&2;}
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Cannot find clamd.conf, not enabling ClamAV interface" >&5
+$as_echo "$as_me: WARNING: Cannot find clamd.conf, not enabling ClamAV interface" >&2;}
 else
 	echo $CLAMD_CONF
 fi

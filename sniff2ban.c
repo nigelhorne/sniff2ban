@@ -495,6 +495,7 @@ main(int argc, char *const *argv)
 		interface = pcap_lookupdev(errbuf);
 		if(verbose && interface)
 			printf("%s: Monitoring %s for malware\n", argv[0], interface);
+#ifdef	CLAMD_CONF
 		if(!getsocknamefromclamdconf(buf)) {
 			/*
 			 * No means to talk to clamd or interface given and
@@ -508,6 +509,7 @@ main(int argc, char *const *argv)
 		if(verbose >= 2)
 			printf("%s: Using %s as the ClamAV socket\n", argv[0], buf);
 		sockname = buf;
+#endif
 	} else if(optind == (argc - 1)) {
 		interface = pcap_lookupdev(errbuf);
 		if(verbose && interface)
@@ -532,7 +534,7 @@ main(int argc, char *const *argv)
 			sockname = argv[optind++];
 		interface = NULL;
 	}
-#else
+#elif	defined(CLAMD_CONF)
 	if(optind != (argc - 2)) {
 		if(!getsocknamefromclamdconf(buf)) {
 			/* No means to talk to clamd or interface given */
@@ -547,7 +549,7 @@ main(int argc, char *const *argv)
 		sockname = argv[optind++];
 #endif
 
-	if(sockname[0] != '/') {
+	if(sockname && (sockname[0] != '/')) {
 		char *ptr = strchr(sockname, ':');
 
 		if(ptr == NULL) {
@@ -1689,9 +1691,11 @@ scan(struct value *v, union ip_addr saddr, union ip_addr daddr, in_port_t dport)
 	}
 #endif
 
+#ifdef	CLAMD_CONF
 	/* TODO: Make hostname/port configurable */
 	if(!v->infected)
 		v->infected = clamscan(v->filename, virusname, sockname, sockport);
+#endif
 
 	if(v->infected) {
 		const struct hostent *h;
@@ -1996,6 +2000,7 @@ onexit(void)
 	close_clamd_socket();
 }
 
+#ifndef	CLAMD_CONF
 /*
  * 0 for CLEAN or ERROR
  * FIXME: ERROR should be configurable to assume CLEAN or not
@@ -2008,6 +2013,7 @@ clamscan(const char *file, char *virusname, const char *socketpath, in_port_t po
 	char buf[255];
 
 	assert(file != NULL);
+
 
 	if(socketpath[0] == '/')
 		/* UNIX domain */
@@ -2085,6 +2091,7 @@ clamscan(const char *file, char *virusname, const char *socketpath, in_port_t po
 
 	return 0;
 }
+#endif
 
 static int
 unix_socket(const char *socket_name)

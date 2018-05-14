@@ -43,6 +43,7 @@ On systems other than Linux you must use libpcap.  On Linux it's use is
 encouraged but not mandatory. To use LIBPCAP on Debian Linux you must first
 install the libpcap-dev package; on Fedora you must first install the
 libpcap-devel package.
+If you don't install it, you'll need to give the interface argument.
 
 On Debian, netstat is provided by the net-tools package.
 
@@ -62,7 +63,7 @@ Whitelisted IPs are tracked and reported.
 
 I put this into /etc/rc.local (212.159.0.0 is my ISP which houses secondary MXs
 so I don't want to blacklist it):
-	sniff2ban -d -s -vv -w 212.159.0.0/19 -W /var/run/clamav/clamd.sock eth0&
+	sniff2ban -d -s -vv -w 212.159.0.0/19 -W /var/run/clamav/clamd.sock&
 
 If you're using TCP to connect to clamd you need to give a hostname:port pair,
 e.g. localhost:3310.

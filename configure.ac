@@ -116,7 +116,7 @@ for i in /usr/local/etc /etc /etc/clamav; do
 	fi
 done
 if test "x$CLAMD_CONF" = "x"; then
-	AC_MSG_WARN([Cannot find clamd.conf])
+	AC_MSG_WARN([Cannot find clamd.conf, not enabling ClamAV interface])
 else
 	echo $CLAMD_CONF
 fi
