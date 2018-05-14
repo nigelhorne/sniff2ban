@@ -17,7 +17,7 @@ Version 0.15 20/4/10
 --------------------
 This release includes major new features.
 Clamav-sniffer now uses autoconf, so instead of editing the #defines within
-	clamav-sniffer.c, just type "./configure".
+	sniff2ban.c, just type "./configure".
 The first draft of a monitor system for cracking attempts to port 80 has
 	been added.
 OpenBSD and FreeBSD are now supported.
@@ -29,9 +29,9 @@ Version 0.10 12/2/10
 --------------------
 This release includes some new features and bug fixes.
 Clamav-sniffer is now able to handle very long hostnames.
-If the socket to talk to clamd isn't given, clamav-sniffer now looks in the
+If the socket to talk to clamd isn't given, sniff2ban now looks in the
 clamd.conf file for the information.
-Added HAVE_NETSTAT_WIDE. Some netstats don't have the -W option, clamav-sniffer
+Added HAVE_NETSTAT_WIDE. Some netstats don't have the -W option, sniff2ban
 is now able to use lsof on those environments.
 
 Version 0.07 20/12/09
@@ -54,9 +54,9 @@ allows /netmask to be added to a whitelist address, e.g. "-w 192.168.1.0/8".
 
 Version 0.05 16/4/09
 --------------------
-This release includes a major rewrite. If it is available, clamav-sniffer
+This release includes a major rewrite. If it is available, sniff2ban
 will now make use of the pcap library. This ehances the portability of
-clamav-sniffer which is now available for FreeBSD, Solaris and NetBSD in
+sniff2ban which is now available for FreeBSD, Solaris and NetBSD in
 addition to Linux. The "-d" feature only works for Linux for now, I plan to
 port that to other platforms soon.
 

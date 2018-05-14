@@ -89,7 +89,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 target_triplet = @target@
-bin_PROGRAMS = clsniffer$(EXEEXT)
+bin_PROGRAMS = sniff2ban$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -105,9 +105,9 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_clsniffer_OBJECTS = hashtable.$(OBJEXT) clamav-sniffer.$(OBJEXT)
-clsniffer_OBJECTS = $(am_clsniffer_OBJECTS)
-clsniffer_LDADD = $(LDADD)
+am_sniff2ban_OBJECTS = hashtable.$(OBJEXT) sniff2ban.$(OBJEXT)
+sniff2ban_OBJECTS = $(am_sniff2ban_OBJECTS)
+sniff2ban_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -136,8 +136,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(clsniffer_SOURCES)
-DIST_SOURCES = $(clsniffer_SOURCES)
+SOURCES = $(sniff2ban_SOURCES)
+DIST_SOURCES = $(sniff2ban_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -275,7 +275,6 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
-runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -288,7 +287,7 @@ target_vendor = @target_vendor@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-clsniffer_SOURCES = hashtable.c clamav-sniffer.c
+sniff2ban_SOURCES = hashtable.c sniff2ban.c
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -385,9 +384,9 @@ uninstall-binPROGRAMS:
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 
-clsniffer$(EXEEXT): $(clsniffer_OBJECTS) $(clsniffer_DEPENDENCIES) $(EXTRA_clsniffer_DEPENDENCIES) 
-	@rm -f clsniffer$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(clsniffer_OBJECTS) $(clsniffer_LDADD) $(LIBS)
+sniff2ban$(EXEEXT): $(sniff2ban_OBJECTS) $(sniff2ban_DEPENDENCIES) $(EXTRA_sniff2ban_DEPENDENCIES) 
+	@rm -f sniff2ban$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(sniff2ban_OBJECTS) $(sniff2ban_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -395,8 +394,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/clamav-sniffer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hashtable.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sniff2ban.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -763,7 +762,7 @@ uninstall-am: uninstall-binPROGRAMS
 
 .PRECIOUS: Makefile
 
-# clsniffer_LDADD = -lm -lpcap -lresolv
+# sniff2ban_LDADD = -lm -lpcap -lresolv
 
 install: $(bin_PROGRAMS)
 	mv $< /usr/local/sbin/$<

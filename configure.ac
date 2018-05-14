@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.65])
-AC_INIT([clamav-sniffer], [0.17], [njh@bandsman.co.uk])
+AC_INIT([sniff2ban], [0.17], [njh@bandsman.co.uk])
 AC_CANONICAL_SYSTEM
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([hashtable_private.h])

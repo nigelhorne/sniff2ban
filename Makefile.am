@@ -1,6 +1,6 @@
-bin_PROGRAMS = clsniffer
-clsniffer_SOURCES = hashtable.c clamav-sniffer.c
-# clsniffer_LDADD = -lm -lpcap -lresolv
+bin_PROGRAMS = sniff2ban
+sniff2ban_SOURCES = hashtable.c sniff2ban.c
+# sniff2ban_LDADD = -lm -lpcap -lresolv
 
 install: $(bin_PROGRAMS)
 	mv $< /usr/local/sbin/$<

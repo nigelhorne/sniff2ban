@@ -5,7 +5,7 @@ optionally block the remote site for a minute.
 Sites can be whitelisted.
 
 Usage:
-	clsniffer [-d] [-k] [-s] [-t seconds] [-v] [-S program1] [-S program2...] [-w IPv4address1[/mask]] [-w IPv4address2[/mask]...] [-p pidfile] [-V] [-W] [ socket ] [ interface ]
+	sniff2ban [-d] [-k] [-s] [-t seconds] [-v] [-S program1] [-S program2...] [-w IPv4address1[/mask]] [-w IPv4address2[/mask]...] [-p pidfile] [-V] [-W] [ socket ] [ interface ]
 
 -d:	Block (iptables DROP) sites sending us malware
 -k:	Kill the program sending/receiving the malware (needs netstat which support -W)
@@ -22,7 +22,7 @@ Usage:
 		you could risk false negatives
 -T:	Temporary directory
 -v:	Verbose -vv for more verbosity
--V:	Print the version of clamav-sniffer
+-V:	Print the version of sniff2ban
 -w:	Don't block (whitelist) this IP address
 -W:	Don't scan whitelisted IP addresses
 socket:		Means to talk to clamd: /full/path/name OR hostname:port, if
@@ -37,7 +37,7 @@ interface.
 
 You are urged to keep this product up-to-date.  The best way is to checkout the
 latest version from the GIT repositary about once a day:
-	git clone https://github.com/nigelhorne/clamav-sniffer.git
+	git clone https://github.com/nigelhorne/sniff2ban.git
 
 On systems other than Linux you must use libpcap.  On Linux it's use is
 encouraged but not mandatory. To use LIBPCAP on Debian Linux you must first
@@ -62,14 +62,14 @@ Whitelisted IPs are tracked and reported.
 
 I put this into /etc/rc.local (212.159.0.0 is my ISP which houses secondary MXs
 so I don't want to blacklist it):
-	clsniffer -d -s -vv -w 212.159.0.0/19 -W /var/run/clamav/clamd.sock&
+	sniff2ban -d -s -vv -w 212.159.0.0/19 -W /var/run/clamav/clamd.sock&
 
 If you're using TCP to connect to clamd you need to give a hostname:port pair,
 e.g. localhost:3310.
 
 Works well with the Sanesecurity signatures to stop spammers, see
 http://www.sanesecurity.co.uk/. Very often, after a spam is sent a copy of the
-same one is sent from the same client, clamav-sniffer will use your firewall to
+same one is sent from the same client, sniff2ban will use your firewall to
 prevent that.
 
 Since the software plays around with system files you MUST run as root.
@@ -89,7 +89,7 @@ To enable SMTP brute force detection (not currently implemented)
 
 If you see lots of send errors, the chances are that clamd is timingout. In
 this case, increase ReadTimeout and CommandReadTimeout in clamd.conf to
-86400 (1 day) and restart clamd and clamav-sniffer.
+86400 (1 day) and restart clamd and sniff2ban.
 
 If you can't get configure && make to work because of an autoconf issue,
 try the following commands before rerunning configure:

@@ -1,5 +1,5 @@
 /*
- *  clamav-sniffer.c: Scan for viruses being sent over an interface
+ *  sniff2ban.c: Scan for viruses being sent over an interface
  *
  *  Copyright (C) 2009-2018 Nigel Horne, njh@bandsman.co.uk
  *
@@ -426,7 +426,7 @@ main(int argc, char *const *argv)
 				break;
 			case 's':
 				/*
-				 * Useful when using clamav-sniffer to monitor
+				 * Useful when using sniff2ban to monitor
 				 * outgoing emails where we want to see what's
 				 * going on, but don't want to block all traffic
 				 */
@@ -754,7 +754,7 @@ main(int argc, char *const *argv)
 	if(pidfile) {
 		/*
 		 * Add a pidfile, useful for monit(1) and puppet(1)
-		 * to restart if clamav-sniffer dies
+		 * to restart if sniff2ban dies
 		 */
 		FILE *p = fopen(pidfile, "w");
 
