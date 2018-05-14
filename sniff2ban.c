@@ -297,12 +297,14 @@ static	void	kill_route(union ip_addr addr_host_order);
 static	void	allow_route(union ip_addr addr_host_order);
 static	void	allow_route(union ip_addr addr);
 static	void	onexit(void);
+#ifdef	CLAMD_CONF
 static	int	clamscan(const char *file, char *virusname, const char *socketpath, in_port_t port);
 static	int	unix_socket(const char *socket_name);
 static	int	ip_socket(const char *hostname, in_port_t portnum);
 static	int	recv_data(int s, int tsecs, char *buf, size_t len);
 static	void	close_clamd_socket(void);
 static	int	send_data(int fd, const void *buff, unsigned int count, const char *socketpath);
+#endif
 static	void	hashtable_iterate(struct hashtable *h, int scanthem, int foreceunlink);
 static	void	destroy(struct hashtable *h, struct key *k, struct value *v);
 static	const char	*ipv4tostr(char *s, union ip_addr addr_host_order);
@@ -2003,7 +2005,9 @@ onexit(void)
 
 	stopping = 1;
 
+#ifdef	CLAMD_CONF
 	close_clamd_socket();
+#endif
 }
 
 #ifdef	CLAMD_CONF
@@ -2097,7 +2101,6 @@ clamscan(const char *file, char *virusname, const char *socketpath, in_port_t po
 
 	return 0;
 }
-#endif
 
 static int
 unix_socket(const char *socket_name)
@@ -2273,6 +2276,7 @@ send_data(int sock, const void *buff, unsigned int count, const char *socketpath
 
 	return count;
 }
+#endif
 
 #include "hashtable_private.h"
 
