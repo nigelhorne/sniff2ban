@@ -16,7 +16,7 @@ improvements and new HTTP signatures.
 Version 0.15 20/4/10
 --------------------
 This release includes major new features.
-Clamav-sniffer now uses autoconf, so instead of editing the #defines within
+Sniff2ban now uses autoconf, so instead of editing the #defines within
 	sniff2ban.c, just type "./configure".
 The first draft of a monitor system for cracking attempts to port 80 has
 	been added.
@@ -28,7 +28,7 @@ The -W flag has been added, with this option data from white-listed IP addresses
 Version 0.10 12/2/10
 --------------------
 This release includes some new features and bug fixes.
-Clamav-sniffer is now able to handle very long hostnames.
+Sniff2ban is now able to handle very long hostnames.
 If the socket to talk to clamd isn't given, sniff2ban now looks in the
 clamd.conf file for the information.
 Added HAVE_NETSTAT_WIDE. Some netstats don't have the -W option, sniff2ban
