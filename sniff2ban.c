@@ -274,6 +274,9 @@ static	const	char	*http_probes[] = {
 	"GET /stalker_portal/server/adm/users/users-list-json",
 	"GET /_asterisk/",
 	"masscan/",
+	"GET /plugins/weathermap/configs/conn.php?",
+	"GET /invoker/readonly",
+	"GET /cools.php?id=wget",
 	NULL
 };
 static	size_t	*http_probelens;
