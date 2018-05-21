@@ -1459,7 +1459,7 @@ scan(struct value *v, union ip_addr saddr, union ip_addr daddr, in_port_t dport)
 #ifdef	HAVE_MEMMEM
 		ret = i = 0;
 		for(probe = http_probes; *probe; probe++) {
-			/* TODO: This should be case independant */
+			/* TODO: This should be case independent */
 			ret = (memmem(contents, nbytes, *probe, http_probelens[i++]) != NULL);
 			if(ret) {
 				strcpy(virusname, *probe);
