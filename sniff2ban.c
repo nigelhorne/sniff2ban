@@ -277,6 +277,7 @@ static	const	char	*http_probes[] = {
 	"GET /plugins/weathermap/configs/conn.php?",
 	"GET /invoker/readonly",
 	"GET /cools.php?id=wget",
+	"GET /aastra/aastra.cfg",
 	NULL
 };
 static	size_t	*http_probelens;
