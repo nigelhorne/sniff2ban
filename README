@@ -99,3 +99,4 @@ try the following commands before rerunning configure:
 	autoheader
 	autoconf
 	automake
+	ln -s /usr/share/automake-1.16/compile .
