@@ -273,6 +273,7 @@ static	const	char	*http_probes[] = {
 	"GET /engine/log.txt",
 	"GET /stalker_portal/server/adm/users/users-list-json",
 	"GET /_asterisk/",
+	"GET /login.cgi/cli=aa",
 	"masscan/",
 	"GET /plugins/weathermap/configs/conn.php?",
 	"GET /invoker/readonly",
