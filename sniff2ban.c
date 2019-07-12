@@ -1,7 +1,7 @@
 /*
  *  sniff2ban.c: Scan for viruses being sent over an interface
  *
- *  Copyright (C) 2009-2018 Nigel Horne, njh@bandsman.co.uk
+ *  Copyright (C) 2009-2019 Nigel Horne, njh@bandsman.co.uk
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 2 as
@@ -279,6 +279,8 @@ static	const	char	*http_probes[] = {
 	"GET /invoker/readonly",
 	"GET /cools.php?id=wget",
 	"GET /aastra/aastra.cfg",
+	"GET /dana-na/jam/querymanifest.cgi?component=preConfiguration",
+	"POST /dns-query",
 	NULL
 };
 static	size_t	*http_probelens;
