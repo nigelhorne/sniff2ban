@@ -1,6 +1,5 @@
-Sniff2ban scans traffic through a given interface for malware by performing
-real-time scanning of your network. If malware is detected it will then
-optionally block the remote site for a minute.
+Sniff2ban scans traffic through a given interface for nasties by performing
+real-time scanning of your network.
 
 Sites can be whitelisted.
 
