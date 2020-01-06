@@ -283,7 +283,7 @@ static	const	char	*http_probes[] = {
 	"POST /dns-query",
 	"POST /editBlackAndWhiteList",
 	"GET /?XDEBUG_SESSION_START=phpstorm",
-	"GET ../../"
+	"GET ../../",
 	NULL
 };
 static	size_t	*http_probelens;
