@@ -2010,6 +2010,9 @@ allow_route(union ip_addr addr_host_order)
 static void
 onexit(void)
 {
+	if(stopping)
+		return;
+
 	signal(SIGTERM, SIG_DFL);
 	signal(SIGINT, SIG_DFL);
 
