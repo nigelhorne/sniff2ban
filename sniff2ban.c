@@ -285,7 +285,7 @@ static	const	char	*http_probes[] = {
 	"GET /?XDEBUG_SESSION_START=phpstorm",
 	"GET ../../",
 	"POST /api/jsonws/invoke",
-	"GET /?a=fetch&content=<php>die(@md5(HelloThinkCMF))</php>"
+	"GET /?a=fetch&content=<php>die(@md5(HelloThinkCMF))</php>",
 	NULL
 };
 static	size_t	*http_probelens;
