@@ -286,6 +286,7 @@ static	const	char	*http_probes[] = {
 	"GET ../../",
 	"POST /api/jsonws/invoke",
 	"GET /?a=fetch&content=<php>die(@md5(HelloThinkCMF))</php>",
+	"POST /cgi-bin/mainfunction.cgi",
 	NULL
 };
 static	size_t	*http_probelens;
