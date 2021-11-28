@@ -1,7 +1,7 @@
 /*
  *  sniff2ban.c: Scan for intrusions
  *
- *  Copyright (C) 2009-2020 Nigel Horne, njh@bandsman.co.uk
+ *  Copyright (C) 2009-2021 Nigel Horne, njh@bandsman.co.uk
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 2 as
@@ -2070,8 +2070,8 @@ clamscan(const char *file, char *virusname, const char *socketpath, in_port_t po
 		/*
 		 * Most likely clamd has been restarted
 		 */
-		syslog(LOG_ERR, "Failed to send %d bytes in %s to clamd", len, file);
-		fprintf(stderr, "Failed to send %d bytes in %s to clamd\n", len, file);
+		syslog(LOG_ERR, "Failed to send %d bytes in %s to clamd on %s", len, file, socketpath);
+		fprintf(stderr, "Failed to send %d bytes in %s to clamd on %s\n", len, file, socketpath);
 		close_clamd_socket();
 		return 0;
 	}

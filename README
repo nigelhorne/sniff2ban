@@ -52,8 +52,9 @@ On Linux I have used both tinycc and gcc.
 
 To build with tinycc:
 	CFLAGS="-Wall -g -bt 20" CPPFLAGS= CXXFLAGS= CC=tcc ./configure
+	automake --add-missing
 	make
-	make install
+	sudo make install
 
 On Solaris10 I have used cc and gcc. You can get libpcap and lsof from
 http://www.sunfreeware.com/.
