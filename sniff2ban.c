@@ -1,7 +1,7 @@
 /*
  *  sniff2ban.c: Scan for intrusions
  *
- *  Copyright (C) 2009-2021 Nigel Horne, njh@bandsman.co.uk
+ *  Copyright (C) 2009-2022 Nigel Horne, njh@bandsman.co.uk
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 2 as
@@ -287,6 +287,7 @@ static	const	char	*http_probes[] = {
 	"POST /api/jsonws/invoke",
 	"GET /?a=fetch&content=<php>die(@md5(HelloThinkCMF))</php>",
 	"POST /cgi-bin/mainfunction.cgi",
+	"GET /shell?cd+/tmp;rm+-rf+*;wget",
 	"/${jndi:ldap://",
 	NULL
 };
