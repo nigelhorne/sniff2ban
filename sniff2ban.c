@@ -290,6 +290,7 @@ static	const	char	*http_probes[] = {
 	"GET /shell?cd+/tmp;rm+-rf+*;wget",
 	"/${jndi:ldap://",
 	"GET /wp-includes/id3/license.txt/wp/wp-includes/wlwmanifest.xml",
+	"GET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php",
 	NULL
 };
 static	size_t	*http_probelens;
