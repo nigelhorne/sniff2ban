@@ -169,9 +169,11 @@ static	struct apachehosts {
 } *apachehosts;
 #endif
 
+#ifdef	CLAMD_CONF
 static	const	char	*sockname;	/* talk to clamd: pathname or host */
 static	in_port_t	sockport;	/* talk to clamd: if host */
 static	int	clamd_socket;
+#endif
 
 #ifdef SITES_ENABLED_DIR
 /*
@@ -566,7 +568,6 @@ main(int argc, char *const *argv)
 		sockname = buf;
 	} else
 		sockname = argv[optind++];
-#endif
 
 	if(sockname && (sockname[0] != '/')) {
 		char *ptr = strchr(sockname, ':');
@@ -590,6 +591,7 @@ main(int argc, char *const *argv)
 		}
 	}
 	/* TODO: validate sockname by sending PING to clamd */
+#endif
 
 #ifdef	HAVE_LIBPCAP
 	if(argv[optind])
