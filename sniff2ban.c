@@ -1,7 +1,7 @@
 /*
  *  sniff2ban.c: Scan for intrusions
  *
- *  Copyright (C) 2009-2023 Nigel Horne, njh@bandsman.co.uk
+ *  Copyright (C) 2009-2024 Nigel Horne, njh@bandsman.co.uk
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 2 as
@@ -293,6 +293,8 @@ static	const	char	*http_probes[] = {
 	"/${jndi:ldap://",
 	"GET /wp-includes/id3/license.txt/wp/wp-includes/wlwmanifest.xml",
 	"GET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php",
+	/* OpenWRT hack */
+	"GET /cgi-bin/luci/;stok=/locale?form=country&operation=write&country",
 	NULL
 };
 static	size_t	*http_probelens;
