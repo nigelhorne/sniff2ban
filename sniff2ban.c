@@ -295,6 +295,8 @@ static	const	char	*http_probes[] = {
 	"GET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php",
 	/* OpenWRT hack */
 	"GET /cgi-bin/luci/;stok=/locale?form=country&operation=write&country",
+	"..%252Fetc%252Fpasswd",
+	"GET /forum/viewforum.php?f=6&f=..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252Fetc%252Fpasswd",
 	NULL
 };
 static	size_t	*http_probelens;
