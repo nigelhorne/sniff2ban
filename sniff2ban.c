@@ -2548,9 +2548,9 @@ setup_apache_hosts(void)
 				tail = tail->next;
 			}
 			if(tail == NULL)
-				fputs("Memory allocation failure\n", stderr);
 				fclose(fin);
 				closedir(dirp);
+				fputs("Memory allocation failure\n", stderr);
 				return;
 			}
 
@@ -2560,6 +2560,13 @@ setup_apache_hosts(void)
 			if(verbose >= 3)
 				printf("Adding apache hostname %s\n", p);
 			tail->name = strdup(p);
+			if(tail->name == NULL) {
+				free(tail);
+				fclose(fin);
+				closedir(dirp);
+				fputs("Memory allocation failure\n", stderr);
+				return;
+			}
 			tail->next = NULL;
 		}
 		fclose(fin);
