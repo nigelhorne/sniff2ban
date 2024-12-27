@@ -2526,16 +2526,14 @@ setup_apache_hosts(void)
 		while(fgets(buf, sizeof(buf) - 1, fin) != NULL) {
 			char *p, *q;
 
-			p = strstr(buf, "ServerName");
-			if(p)
+			/* Locate ServerName or ServerAlias */
+			if((p = strstr(buf, "ServerName")) != NULL)
 				p = &p[10];
-			else {
-				p = strstr(buf, "ServerAlias");
-				if(p)
-					p = &p[11];
-				if(p == NULL)
-					continue;
-			}
+			else if((p = strstr(buf, "ServerAlias")) != NULL)
+				p = &p[11];
+			else 
+				continue;
+
 			while(isspace(*p))
 				p++;
 			if(*p == '\0')
