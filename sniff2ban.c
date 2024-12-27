@@ -2511,7 +2511,7 @@ setup_apache_hosts(void)
 		char buf[BUFSIZ + 1];
 
 		if(d->d_ino == 0 || d->d_name[0] == '.')
-			continue;	/* Skip hidden and invalid files */
+			continue;	/* Skip hidden and unlinked files */
 
 		if(snprintf(buf, sizeof(buf), "%s/%s", SITES_ENABLED_DIR, d->d_name) >= sizeof(buf)) {
 			fprintf(stderr, "File path too long, skipping: %s\n", d->d_name);
