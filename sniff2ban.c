@@ -2531,19 +2531,29 @@ setup_apache_hosts(void)
 				p = &p[10];
 			else if((p = strstr(buf, "ServerAlias")) != NULL)
 				p = &p[11];
-			else 
+			else
 				continue;
 
-			while(isspace(*p))
+			/* Trim leading whitespace */
+			while(isspace((unsigned char)*p))
 				p++;
-			if(*p == '\0')
+
+			if(*p == '\0')	/* Skip if empty */
 				continue;
+
 			if(apachehosts == NULL)
 				tail = apachehosts = malloc(sizeof(struct apachehosts));
 			else {
 				tail->next = malloc(sizeof(struct apachehosts));
 				tail = tail->next;
 			}
+			if(tail == NULL)
+				fputs("Memory allocation failure\n", stderr);
+				fclose(fin);
+				closedir(dirp);
+				return;
+			}
+
 			q = strchr(p, '\n');
 			if(q)
 				*q = '\0';
