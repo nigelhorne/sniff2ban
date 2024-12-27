@@ -2500,18 +2500,24 @@ setup_apache_hosts(void)
 	const struct dirent *d;
 	struct apachehosts *tail;
 
-	if(dirp == NULL)
+	if(dirp == NULL) {
+		perror("Failed to open directory");
 		return;
+	}
 
+	tail = NULL;
 	while((d = readdir(dirp)) != NULL) {
 		FILE *fin;
 		char buf[BUFSIZ + 1];
 
-		if(d->d_ino == 0)
+		if(d->d_ino == 0 || d->d_name[0] == '.')
+			continue;	/* Skip hidden and invalid files */
+
+		if(snprintf(buf, sizeof(buf), "%s/%s", SITES_ENABLED_DIR, d->d_name) >= sizeof(buf)) {
+			fprintf(stderr, "File path too long, skipping: %s\n", d->d_name);
 			continue;
-		if(d->d_name[0] == '.')
-			continue;
-		sprintf(buf, "%s/%s", SITES_ENABLED_DIR, d->d_name);
+		}
+
 		fin = fopen(buf, "r");
 		if(fin == NULL) {
 			perror(buf);
