@@ -539,7 +539,9 @@ main(int argc, char *const *argv)
 		interface = pcap_lookupdev(errbuf);
 		if(verbose && interface)
 			printf("%s: Monitoring %s for malware\n", argv[0], interface);
+#ifdef	CLAMD_CONF
 		sockname = argv[optind++];
+#endif
 	} else {
 		if(optind != (argc - 2)) {
 			if(!getsocknamefromclamdconf(buf)) {
@@ -554,9 +556,13 @@ main(int argc, char *const *argv)
 			}
 			if(verbose >= 2)
 				printf("%s: Using %s as the ClamAV socket\n", argv[0], buf);
+#ifdef	CLAMD_CONF
 			sockname = buf;
 		} else
 			sockname = argv[optind++];
+#else
+		}
+#endif
 		interface = NULL;
 	}
 #elif	defined(CLAMD_CONF)
