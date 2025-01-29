@@ -297,6 +297,7 @@ static	const	char	*http_probes[] = {
 	"GET /cgi-bin/luci/;stok=/locale?form=country&operation=write&country",
 	"..%252Fetc%252Fpasswd",
 	"GET /forum/viewforum.php?f=6&f=..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252Fetc%252Fpasswd",
+	"v.mustleak.com",
 	NULL
 };
 static	size_t	*http_probelens;
