@@ -1,7 +1,7 @@
 /*
  *  sniff2ban.c: Scan for intrusions
  *
- *  Copyright (C) 2009-2024 Nigel Horne, njh@bandsman.co.uk
+ *  Copyright (C) 2009-2025 Nigel Horne, njh@bandsman.co.uk
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 2 as
@@ -298,6 +298,7 @@ static	const	char	*http_probes[] = {
 	"..%252Fetc%252Fpasswd",
 	"GET /forum/viewforum.php?f=6&f=..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252Fetc%252Fpasswd",
 	"v.mustleak.com",
+	"GET //cms/wp-includes/wlwmanifest.xml",
 	NULL
 };
 static	size_t	*http_probelens;
