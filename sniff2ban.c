@@ -1943,13 +1943,10 @@ kill_route(union ip_addr addr_host_order)
 							if(kill(pid, SIGTERM) < 0)
 								perror("kill");
 							if(verbose) {
-								if(ptr) {
-									printf("Terminating process %d (", (int)pid);
-									for(ptr = buf; !isspace(*ptr); ptr++)
-										putchar(*ptr);
-									fputs(")\n", stdout);
-								} else
-									printf("Terminating process %d\n", (int)pid);
+								printf("Terminating process %d (", (int)pid);
+								for(ptr = buf; !isspace(*ptr); ptr++)
+									putchar(*ptr);
+								fputs(")\n", stdout);
 							}
 							sleep(1);
 							kill(pid, SIGKILL);
