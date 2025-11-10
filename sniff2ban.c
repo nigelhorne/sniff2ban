@@ -299,6 +299,7 @@ static	const	char	*http_probes[] = {
 	"GET /forum/viewforum.php?f=6&f=..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252Fetc%252Fpasswd",
 	"v.mustleak.com",
 	"GET //cms/wp-includes/wlwmanifest.xml",
+	"GET /author/",
 	NULL
 };
 static	size_t	*http_probelens;
